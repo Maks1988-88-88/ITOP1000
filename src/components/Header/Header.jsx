@@ -8,7 +8,7 @@ export default function Header({ baseValue }) {
     sale: '1.00',
   };
 
-  console.log('baseValue', [...baseValue, UAH]);
+  // console.log('baseValue', [...baseValue, UAH]);
 
   // console.log(Math.round(100 * 27.955555) / 100);
 
