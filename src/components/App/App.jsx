@@ -4,6 +4,7 @@ import './App.css';
 import Header from 'components/Header/Header';
 import Convert from 'components/Convert/Convert';
 import Section from 'components/Section/Section';
+import moment from 'moment';
 
 const BASE_URL =
   'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5';
@@ -13,6 +14,8 @@ const UAH = {
   buy: '1.00',
   sale: '1.00',
 };
+
+const today = `Exchange rate ${moment(Date.now()).format('DD/MM/YYYY')}`;
 
 function App() {
   const [baseValue, setBaseValue] = useState([]);
@@ -83,7 +86,7 @@ function App() {
 
   return (
     <>
-      <Section title="Header">
+      <Section title={today}>
         <Header baseValue={baseValue} />
       </Section>
       <Section title="Convert">
