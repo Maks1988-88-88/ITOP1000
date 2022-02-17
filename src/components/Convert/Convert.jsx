@@ -1,4 +1,8 @@
 import React from 'react';
+// import PropTypes from 'prop-types';
+import s from 'components/Convert/Convert.module.css';
+
+
 
 import { nanoid } from 'nanoid';
 
@@ -9,16 +13,24 @@ export default function Convert({
   amount,
   onChangeAmount,
 }) {
+  // console.log('baseValue', baseValue);
+  // console.log('selectCurrency', selectCurrency);
+  // console.log('onChangeCurrency', onChangeCurrency);
   // console.log('amount', amount);
-  //   async function max() {
-  //     await amount;
-  //       let a = amount;
-  //       return a;
-  //     }
+  // console.log('onChangeAmount', onChangeAmount);
   return (
-    <div>
-      <input type="number" value={amount} onChange={onChangeAmount} />
-      <select value={selectCurrency} onChange={onChangeCurrency}>
+    <div className={s.convertPostion}>
+      <input
+        type="number"
+        value={amount}
+        onChange={onChangeAmount}
+        className={s.inputConvert}
+      />
+      <select
+        value={selectCurrency}
+        onChange={onChangeCurrency}
+        className={s.selectConvert}
+      >
         {baseValue.map(value => (
           <option value={value.ccy} key={nanoid()}>
             {value.ccy}
@@ -28,3 +40,11 @@ export default function Convert({
     </div>
   );
 }
+
+// Convert.propTypes = {
+//   baseValue: PropTypes.array.isRequired,
+//   selectCurrency: PropTypes.func.isRequired,
+//   onChangeCurrency: PropTypes.array.isRequired,
+//   amount: PropTypes.func.isRequired,
+//   onChangeAmount: PropTypes.array.isRequired,
+// };

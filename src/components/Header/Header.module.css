@@ -1,0 +1,13 @@
+.headerTittle {
+  text-align: center;
+}
+
+.currencyList {
+  list-style: none;
+  padding: 0;
+}
+
+.currencyPosition {
+  display: flex;
+  justify-content: center;
+}

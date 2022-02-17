@@ -1,28 +1,25 @@
 import React from 'react';
-import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
+import s from 'components/Header/Header.module.css';
+
+
 
 export default function Header({ baseValue }) {
 
   const felterBaseValue = baseValue.filter(value => value.ccy !== 'UAH');
-
   return (
-    <div>
-      <ul>
-        <h2>Buy</h2>
+    <div className={s.currencyPosition}>
+      <ul className={s.currencyList}>
         {felterBaseValue.map(el => (
-          <li key={nanoid()}>
+          <li key={el.ccy}>
             {el.ccy}: {Math.round(100 * el.buy) / 100} {el.base_ccy}
-          </li>
-        ))}
-      </ul>
-      <ul>
-        <h2>Sale</h2>
-        {felterBaseValue.map(el => (
-          <li key={nanoid()}>
-            {el.ccy}: {Math.round(100 * el.sale) / 100} {el.base_ccy}
           </li>
         ))}
       </ul>
     </div>
   );
 }
+
+Header.propTypes = {
+  baseValue: PropTypes.array.isRequired,
+};
