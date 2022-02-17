@@ -9,7 +9,7 @@ export default function Convert({
   amount,
   onChangeAmount,
 }) {
-  console.log('amount', amount);
+  // console.log('amount', amount);
   //   async function max() {
   //     await amount;
   //       let a = amount;
