@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import s from 'components/Convert/Convert.module.css';
 
 
@@ -13,11 +13,6 @@ export default function Convert({
   amount,
   onChangeAmount,
 }) {
-  // console.log('baseValue', baseValue);
-  // console.log('selectCurrency', selectCurrency);
-  // console.log('onChangeCurrency', onChangeCurrency);
-  // console.log('amount', amount);
-  // console.log('onChangeAmount', onChangeAmount);
   return (
     <div className={s.convertPostion}>
       <input
@@ -41,10 +36,10 @@ export default function Convert({
   );
 }
 
-// Convert.propTypes = {
-//   baseValue: PropTypes.array.isRequired,
-//   selectCurrency: PropTypes.func.isRequired,
-//   onChangeCurrency: PropTypes.array.isRequired,
-//   amount: PropTypes.func.isRequired,
-//   onChangeAmount: PropTypes.array.isRequired,
-// };
+Convert.propTypes = {
+  baseValue: PropTypes.array,
+  selectCurrency: PropTypes.string,
+  onChangeCurrency: PropTypes.func,
+  amount: PropTypes.number,
+  onChangeAmount: PropTypes.func,
+};

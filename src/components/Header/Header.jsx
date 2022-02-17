@@ -5,13 +5,12 @@ import s from 'components/Header/Header.module.css';
 
 
 export default function Header({ baseValue }) {
-
   const felterBaseValue = baseValue.filter(value => value.ccy !== 'UAH');
   return (
     <div className={s.currencyPosition}>
       <ul className={s.currencyList}>
         {felterBaseValue.map(el => (
-          <li key={el.ccy}>
+          <li key={el.ccy} className={s.currencyItem}>
             {el.ccy}: {Math.round(100 * el.buy) / 100} {el.base_ccy}
           </li>
         ))}
@@ -21,5 +20,5 @@ export default function Header({ baseValue }) {
 }
 
 Header.propTypes = {
-  baseValue: PropTypes.array.isRequired,
+  baseValue: PropTypes.array,
 };

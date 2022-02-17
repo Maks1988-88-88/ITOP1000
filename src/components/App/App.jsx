@@ -18,24 +18,10 @@ function App() {
   const [baseValue, setBaseValue] = useState([]);
   const [firstCurrency, setFirstCurrency] = useState();
   const [secondCurrency, setSecondCurrency] = useState();
-  const [exchangeValue, setExchangeValue] = useState();
-  const [exchangeSecondValue, setExchangeSecondValue] = useState();
+  const [exchangeValue, setExchangeValue] = useState(1);
+  const [exchangeSecondValue, setExchangeSecondValue] = useState(1);
   const [amountValue, setAmountValue] = useState(1);
   const [amountSecondCurrency, setAmountSecondCurrency] = useState(true);
-
-
-  let toAmount = '1';
-  let fromAmount = '1';
-
-  if (amountSecondCurrency) {
-    fromAmount = amountValue;
-    toAmount = (exchangeValue * amountValue) / exchangeSecondValue;
-    toAmount = Math.round(100 * toAmount) / 100;
-  } else {
-    toAmount = amountValue;
-    fromAmount = (exchangeSecondValue * amountValue) / exchangeValue;
-    fromAmount = Math.round(100 * fromAmount) / 100;
-  }
 
   useEffect(() => {
     fetch(BASE_URL)
@@ -60,30 +46,40 @@ function App() {
 
   useEffect(() => {
     if (firstCurrency != null) {
-      const test = baseValue.filter(val => val.ccy === firstCurrency);
-      setExchangeValue(test[0].buy);
+      const exchangeValue = baseValue.filter(val => val.ccy === firstCurrency);
+      setExchangeValue(exchangeValue[0].buy);
     }
   }, [firstCurrency, baseValue]);
 
   useEffect(() => {
     if (secondCurrency != null) {
-      const test = baseValue.filter(val => val.ccy === secondCurrency);
-      setExchangeSecondValue(test[0].buy);
+      const exchangeValue = baseValue.filter(val => val.ccy === secondCurrency);
+      setExchangeSecondValue(exchangeValue[0].buy);
     }
   }, [secondCurrency, baseValue]);
 
-  async function handleFirstChange(e) {
-    await setAmountValue(e.target.value);
+  function handleFirstChange(e) {
+    setAmountValue(e.target.value);
     setAmountSecondCurrency(true);
   }
 
-  async function handleSecondChange(e) {
-    await setAmountValue(e.target.value);
+  function handleSecondChange(e) {
+    setAmountValue(e.target.value);
     setAmountSecondCurrency(false);
   }
-  // console.log("fromAmount", fromAmount);
-  // console.log('fromAmount', toAmount);
 
+  let toAmount;
+  let fromAmount;
+
+  if (amountSecondCurrency) {
+    fromAmount = amountValue;
+    toAmount = (exchangeValue * amountValue) / exchangeSecondValue;
+    toAmount = Math.round(100 * toAmount) / 100;
+  } else {
+    toAmount = amountValue;
+    fromAmount = (exchangeSecondValue * amountValue) / exchangeValue;
+    fromAmount = Math.round(100 * fromAmount) / 100;
+  }
 
   return (
     <>
