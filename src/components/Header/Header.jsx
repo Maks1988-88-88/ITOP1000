@@ -9,8 +9,8 @@ export default function Header({ baseValue }) {
   return (
     <div className={s.currencyPosition}>
       <ul className={s.currencyList}>
-        {felterBaseValue.map(el => (
-          <li key={el.ccy} className={s.currencyItem}>
+        {felterBaseValue.map((el,index) => (
+          <li key={el.ccy + index} className={s.currencyItem}>
             {el.ccy}: {Math.round(100 * el.buy) / 100} {el.base_ccy}
           </li>
         ))}
